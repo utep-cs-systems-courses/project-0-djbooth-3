@@ -30,10 +30,10 @@ void print_char_5x7(char c)
 void print_char_8x12(char c)
 {
   c -= 0x20;
-  for (char row = 0; row < 10; row++) {
+  for (char row = 0; row < 12; row++) {
     unsigned short rowBits = font_8x12[c][row];
-    for (char col = 0; col < 12; col++) {
-      unsigned short colMask = 1 << (11-col);
+    for (char col = 0; col < 8; col++) {
+      unsigned short colMask = 1 << (7-col);
       putchar( (rowBits & colMask) ? '*' : ' ');
     }
     putchar('\n');
@@ -43,10 +43,10 @@ void print_char_8x12(char c)
 void print_char_8x12V(char c)
 {
   c -= 0x20;
-  for (char col = 0; col < 11; col++) {
-    unsigned short rowBits = 1 << (11-col);
-    for (char row = 0; row < 10; row++) {
-      unsigned short colMask = font_8x12[c][row];
+  for (char col = 0; col < 8; col++) {
+    unsigned short colMask = 1 << (7-col);
+    for (char row = 0; row < 12; row++) {
+      unsigned short rowBits = font_8x12[c][row];
       putchar( (rowBits & colMask) ? '*' : ' ');
     }
     putchar('\n');
